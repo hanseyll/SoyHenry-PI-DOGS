@@ -53,14 +53,15 @@ function handleFilterByTemperament (e){
   e.preventDefault(e)
   setCurrentPage(1)
   dispatch(filterByTemperament(e.target.value))
+  SetOrder(e.target.value)
 
 }
 
   return (
     <div>
 <div class="topnav">
-  <a class="active" href="#home">Home</a>
-  <Link to="/dogs">Create Dog</Link>
+  <a class="active" href="#dogs">Home</a>
+  <Link to="/dogs/create-dogs">Create Dog</Link>
   <div class="search-container">
     <form action="/action_page.php">
     <SearchBar/>
@@ -112,7 +113,7 @@ function handleFilterByTemperament (e){
      {currentDogs?.map((c) =>{
         return(
             <div>
-                <Link to={"/home/" + c.id}>
+                <Link to={"/dogs/" + c.id}>
                     <Card name={c.name} weight_min={c.weight_min} weight_max={c.weight_max} image={c.image} />
                 
                 </Link>

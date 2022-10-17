@@ -1,7 +1,8 @@
 const initialState = {
     dogs: [],
     allDogsCopy: [],
-    temperaments: []
+    temperaments: [],
+    detail:[]
 }
 
 
@@ -16,7 +17,8 @@ function rootReducer (state=initialState,action){
             case 'GET_TEMPERAMENTS':
                 return {
                     ...state,
-                    temperaments: action.payload // es lo que me devuelve la funcion ( para mi caso lo que hay en mi routa de back '/temperaments') me traiga todos los temperamentos  
+                    temperaments: action.payload,
+                   // es lo que me devuelve la funcion ( para mi caso lo que hay en mi routa de back '/temperaments') me traiga todos los temperamentos  
 
                 }
             case 'FILTER_BY_WEIGHT' :
@@ -61,10 +63,10 @@ function rootReducer (state=initialState,action){
                 }
 
                 case 'FILTER_BY_TEMPERAMENT':
-                    const temperamentFilter=
-                    action.payload === 'all' ? state.allDogsCopy:
-                    state.allDogsCopy.filter((e)=> e.temperament?.includes(action.payload))
+                    const temperamentFilter= state.allDogsCopy.filter((e)=> e.temperament?.includes(action.payload))
                 
+
+                    
                     return {
                         ...state,
                         dogs: temperamentFilter,
@@ -77,6 +79,12 @@ function rootReducer (state=initialState,action){
                 case 'POST_DOG':
                     return{
                         ...state,
+                    }
+                case 'GET_DETAILS':
+                    return{
+                        ...state,
+                        detail: action.payload
+
                     }
             default:
                 return state;

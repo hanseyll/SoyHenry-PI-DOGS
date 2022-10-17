@@ -20,8 +20,8 @@ const getApiInfo = async () =>{
                 id: e.id,
                 weight_min: parseInt(e.weight.imperial.split("-")[0]),
                 weight_max: parseInt(e.weight.imperial.split("-")[1]),
-                heigth_max: e.heigth_max,
-                heigth_min: e.heigth_min,
+                height_max: parseInt(e.height.imperial.split("-")[0]),
+                height_min: parseInt(e.height.imperial.split("-")[1]),
                 life_span: e.life_span,
                 image: e.image.url,
                 temperament: e.temperament,
@@ -78,6 +78,7 @@ router.get('/dogs/:id', async (req, res) => {
         dogId.length ?
             res.status(200).send(dogId) :
             res.status(404).send('No se encontro el id')
+      
     } else {
         res.status(200).send(AllDogs)
     }
