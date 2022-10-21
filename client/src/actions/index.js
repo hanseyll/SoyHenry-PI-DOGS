@@ -41,6 +41,8 @@ export function filterByTemperament(payload){
         payload
     }
 }
+
+
 export function getTemperaments() {
 
 

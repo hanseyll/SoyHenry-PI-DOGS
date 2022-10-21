@@ -18,6 +18,7 @@ export default function Home() {
   const indexOfLastDog = currentPage * dogsPerPage
   const indexOfFirstDog = indexOfLastDog - dogsPerPage
   const currentDogs = allDogs.slice(indexOfFirstDog,indexOfLastDog);
+  let containerTemps = [];
   
   const paginated= (pageNumber) =>{
     setCurrentPage(pageNumber)
@@ -25,7 +26,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getDogs());
     dispatch(getTemperaments());
-  }, [dispatch]);
+  }, []);
 
   function handleClick(e) {
     e.preventDefault();
@@ -47,22 +48,28 @@ function handleSort (e){
 }
 
 function handleFilterCreated(e){
+  e.preventDefault(e)
   dispatch(filterCreated(e.target.value))
+  setCurrentPage(1)
+  SetOrder(e.target.value)
 }
 function handleFilterByTemperament (e){
   e.preventDefault(e)
   setCurrentPage(1)
   dispatch(filterByTemperament(e.target.value))
-  SetOrder(e.target.value)
+  containerTemps.push(e.target.value)
+  console.log(containerTemps)
 
+ 
 }
 
   return (
     <div>
-<div class="topnav">
-  <a class="active" href="#dogs">Home</a>
+<div className="topnav">
+  <Link className="active" to="/dogs">Home</Link>
+ 
   <Link to="/dogs/create-dogs">Create Dog</Link>
-  <div class="search-container">
+  <div className="search-container">
     <form action="/action_page.php">
     <SearchBar/>
     </form>
@@ -94,28 +101,38 @@ function handleFilterByTemperament (e){
         </select>
         <select onChange={e =>handleFilterByTemperament(e)}>
                     <option value ='all'>All Temperaments</option>
+                    <option value='all'>Reset Temperaments</option>
                     
                    {  
                        allTemperaments.map( el => {
                            return(
+                            
                             <React.Fragment key={el}>
-                                       <option value={el}>{el}</option>    
-                                       
-                            </React.Fragment>               
+                                       <option className="active" value={el}>{el}</option>                                          
+                            </React.Fragment> 
+                             
+                            
+                            
+                            
                            )
+                           
                        })
+                      
                    }
+                
                    </select>
+                 
                    
         
       
                  
      {currentDogs?.map((c) =>{
         return(
-            <div>
+            <div className="cardsContainer">
+              
                 <Link to={"/dogs/" + c.id}>
-                    <Card name={c.name} weight_min={c.weight_min} weight_max={c.weight_max} image={c.image} />
-                
+                    <Card name={c.name} weight_min={c.weight_min} weight_max={c.weight_max} height_min={c.height_min} height_max={c.height_max} image={c.image} />
+                   
                 </Link>
             </div>
         )

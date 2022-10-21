@@ -12,7 +12,8 @@ function rootReducer (state=initialState,action){
             return{
                 ...state,
                 dogs: action.payload,
-                allDogsCopy: action.payload
+                allDogsCopy: action.payload,
+                allDogsCopy2:action.payload,
             }
             case 'GET_TEMPERAMENTS':
                 return {
@@ -32,10 +33,11 @@ function rootReducer (state=initialState,action){
                 }
 
             case 'FILTER_CREATED':
-                const createdFilter = action.payload === 'created'? state.allDogsCopy.filter(el => el.createdInDB): action.payload==='api' ? state.allDogsCopy.filter(el => !el.createdInDB) : state.allDogsCopy
+                const createdFilter = action.payload === 'created'? state.dogs.filter(el => el.createdInDB): action.payload==='api' ? state.allDogsCopy.filter(el => !el.createdInDB) : state.allDogsCopy
                 return{
                     ...state,
-                    dogs: createdFilter
+                    dogs: createdFilter,
+                    
                 }
             case 'ORDER_BY_NAME':
                 let sortedArr = action.payload === 'asc' ?
@@ -63,14 +65,33 @@ function rootReducer (state=initialState,action){
                 }
 
                 case 'FILTER_BY_TEMPERAMENT':
-                    const temperamentFilter= state.allDogsCopy.filter((e)=> e.temperament?.includes(action.payload))
-                
-
-                    
+                    const allDogs3 = state.dogs;
+                    const tempDogs = allDogs3.filter((dog) => {
+                        if (dog.temperaments) {
+                            const temperament =
+                                dog.temperaments.map(
+                                    (dog) => dog.name
+                                );
+                            return  temperament.includes(
+                                action.payload
+                            ) 
+                            
+                        }
+                        else if (dog.temperament) {
+                            return dog.temperament.includes(
+                                action.payload
+                            );
+                        }
+                        return console.log("hay un null")
+                    });
+        
                     return {
                         ...state,
-                        dogs: temperamentFilter,
-                    }
+                        dogs:
+                            action.payload === "all"
+                                ? state.allDogsCopy
+                                : tempDogs,
+                    };
                 case 'GET_NAME_DOGS':
                 return{
                     ...state,
