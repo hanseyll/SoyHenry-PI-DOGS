@@ -39,6 +39,7 @@ export default function Home() {
   function handleClick(e) {
     e.preventDefault();
     dispatch(getDogs());
+    setCurrentPage(1)
   }
   function orderByWeight(e) {
     e.preventDefault(e);
@@ -92,7 +93,7 @@ export default function Home() {
         <h1>Dog world</h1>
         </div>
         
-        <div class="box-1">
+        <div className="box-1">
           <div onClick={(e) => handleClick(e)} class="btn btn-one">
             <span>Reload dogs</span>
           </div>
@@ -148,6 +149,8 @@ export default function Home() {
                     height_min={c.height_min}
                     height_max={c.height_max}
                     image={c.image}
+                    temperamentsApi={c.temperament}
+                    temperamentsDB={c.temperaments? c.temperaments.map((el) => el.name + ", "): console.log('ready')}
                   />
                 </Link>
                 {/*  */}

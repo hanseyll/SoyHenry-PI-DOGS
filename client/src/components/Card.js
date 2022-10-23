@@ -1,7 +1,7 @@
 import React from "react";
 import dogHelp from '../images/dogLost1.jpg'
 import './css/Card.css'
-export default function Card({name,weight_min,weight_max,height_min,height_max,image,temperaments}){
+export default function Card({name,weight_min,weight_max,height_min,height_max,image,temperamentsApi,temperamentsDB}){
     // if(weight_min!==null) weight_min= weight_min + " -";
     // if(height_min!==null) height_min= height_min + " -";
     if(weight_min===null) weight_min= "??"
@@ -17,7 +17,9 @@ export default function Card({name,weight_min,weight_max,height_min,height_max,i
         <div className="container-text">
         <h3>{name}</h3>
         <h5>{weight_min} - {weight_max} Kg</h5>
-        <h3>{temperaments}</h3>
+        <h5> Temperaments</h5>
+        <h3>{temperamentsApi}</h3>
+        <h3>{temperamentsDB}</h3>
         </div>
         </div> 
     )
