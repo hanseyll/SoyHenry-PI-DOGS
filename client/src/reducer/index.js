@@ -65,7 +65,7 @@ function rootReducer (state=initialState,action){
                 }
 
                 case 'FILTER_BY_TEMPERAMENT':
-                    const allDogs3 = state.dogs;
+                    const allDogs3 = state.allDogsCopy;
                     const tempDogs = allDogs3.filter((dog) => {
                         if (dog.temperaments) {
                             const temperament =
@@ -84,6 +84,7 @@ function rootReducer (state=initialState,action){
                         }
                         return console.log("hay un null")
                     });
+                    console.log(action.payload)
         
                     return {
                         ...state,

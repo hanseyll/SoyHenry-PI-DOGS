@@ -26,6 +26,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getDogs());
     dispatch(getTemperaments());
+    
   }, []);
 
   function handleClick(e) {
@@ -51,7 +52,8 @@ function handleFilterCreated(e){
   e.preventDefault(e)
   dispatch(filterCreated(e.target.value))
   setCurrentPage(1)
-  SetOrder(e.target.value)
+  
+  console.log(currentDogs)
 }
 function handleFilterByTemperament (e){
   e.preventDefault(e)
@@ -63,10 +65,16 @@ function handleFilterByTemperament (e){
  
 }
 
+
+
+
   return (
     <div>
 <div className="topnav">
-  <Link className="active" to="/dogs">Home</Link>
+  
+  <Link  onClick={(e) => {
+          handleClick(e);
+        }} className="active" to="/dogs">Home</Link>
  
   <Link to="/dogs/create-dogs">Create Dog</Link>
   <div className="search-container">
@@ -75,30 +83,39 @@ function handleFilterByTemperament (e){
     </form>
   </div>
 </div>
-     
-      <h1>Wait dogs</h1> 
-      <button
-        onClick={(e) => {
-          handleClick(e);
-        }}
-      >
-        reload all dogs
-      </button>
-      <div>
+     <div className="title-home">
+      <h1>Dog world</h1> 
+      <div class="box-1">
+  <div onClick={(e) => handleClick(e)} class="btn btn-one">
+    <span>Reload dogs</span>
+  </div>
+</div>
+        <div className="content-select">
+          <div className="select">
         <select onChange={e => handleSort(e)}>
           <option value="asc">Ascendent</option>
           <option value="desc">Descendent</option>
         </select>
+        </div>
+        <div className="select">
+
+        
         <select onChange={e => orderByWeight(e)}>
           <option value="all">order by weight</option>
           <option value="weight_max">Weight_max</option>
           <option value="weight_min">Weight_min</option>
         </select>
+        </div>
+        <div className="select">
+
+       
         <select onChange={e => handleFilterCreated(e)}>
           <option value="all">All</option>
           <option value="created">Created</option>
           <option value="api">Exist</option>
         </select>
+        </div>
+        <div className="select">
         <select onChange={e =>handleFilterByTemperament(e)}>
                     <option value ='all'>All Temperaments</option>
                     <option value='all'>Reset Temperaments</option>
@@ -108,7 +125,7 @@ function handleFilterByTemperament (e){
                            return(
                             
                             <React.Fragment key={el}>
-                                       <option className="active" value={el}>{el}</option>                                          
+                                       <option value={el}>{el}</option>                                          
                             </React.Fragment> 
                              
                             
@@ -121,30 +138,29 @@ function handleFilterByTemperament (e){
                    }
                 
                    </select>
-                 
-                   
-        
-      
-                 
+                   </div>
+                   </div>
+     <div className="pos-card">
+                 {console.log(currentDogs)}
      {currentDogs?.map((c) =>{
         return(
-            <div className="cardsContainer">
+            <div >
               
                 <Link to={"/dogs/" + c.id}>
-                    <Card name={c.name} weight_min={c.weight_min} weight_max={c.weight_max} height_min={c.height_min} height_max={c.height_max} image={c.image} />
+                    <Card name={c.name} weight_min={c.weight_min} weight_max={c.weight_max} height_min={c.height_min} height_max={c.height_max} image={c.image}/>
                    
                 </Link>
+                {/*  */}
             </div>
         )
      })}
-
-
+</div> 
 <Paginated
         dogsPerPage={dogsPerPage}
         allDogs={allDogs.length}
         paginated= {paginated}
+        currentPage={currentPage}
         />
-
 
       </div>
     </div>

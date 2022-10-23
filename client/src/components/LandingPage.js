@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./css/LandingPage.css";
 
 
+
 function LandingPage() {
   return (
     <div className="container_landing">
@@ -11,9 +12,10 @@ function LandingPage() {
         </div>
         <div>
           <Link className="link_landing" to="/dogs">
-            Let's Go!!!
+            Let's Go
           </Link>
-      </div>
+     
+  </div>
   </div>
   )
 }

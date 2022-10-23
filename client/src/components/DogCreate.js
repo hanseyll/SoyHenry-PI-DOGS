@@ -433,7 +433,7 @@ function Form() {
 
   return (
     <div className="form-container">
-      <h1>CREAR PERRO</h1>
+      <h1>Create your dog</h1>
       <form autocomplete="off" className="" onSubmit={(e)=> handleSubmit(e)}>
 
         {/*Nombre de la raza del perrito*/}

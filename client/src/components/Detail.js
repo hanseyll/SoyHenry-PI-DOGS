@@ -8,9 +8,9 @@ import imgDefault from '../images/dogLost1.jpg'
 export default function Detail(props){
     console.log(props);
     const dispatch = useDispatch();
-
     useEffect(() =>{
         dispatch(getDetail(props.match.params.id))
+        
     },[dispatch])
 
     const myDog = useSelector((state) => state.detail)

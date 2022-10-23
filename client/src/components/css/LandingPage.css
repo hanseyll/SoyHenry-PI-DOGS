@@ -42,14 +42,14 @@
   
   .link_landing {
       text-decoration: none;
-      border: 1px solid rgb(235, 140, 140);
+      border: 1px solid black;
       color: black;
       font-size: 35px;
       padding: 15px;
-      margin: 45%;
       transition: 0.7s;
-      animation-name: mianimacion;
-      animation-duration: 0.5s;
+      font-family: "Nanum Myeongjo", serif;     
+      font-weight: bolder;
+      border-radius: 20px;
     }
     
     .link_landing:hover {
@@ -57,4 +57,22 @@
       transition: 0.7s;
       animation-name: mianimacion;
       animation-duration: 0.5s;
+      color: white;
+    }
+
+    
+   
+    .img2{
+      float: right;
+      margin-right: 200px;
+    }
+  
+    .container-main{
+      width: 100%;
+      display: inline-block;
+    }
+    .container-img{
+      width: 100%;
+      float: left;
+      display: inline;
     }

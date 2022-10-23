@@ -141,6 +141,18 @@ router.post('/dogs', async (req,res) =>{
     res.send('dog created succesfully')
 
 })
+router.delete("/dogs/:name", async (req, res) => {
+    const { name } = req.params;
+    try {
+      await Dog.destroy({
+        where: { name: name },
+      });
+      res.json(`Breed ${name} has been deleted sucessfully`);
+    } catch (err) {
+      console.error(err + 'errorcito');
+      res.status(404).send(err.message);
+    }
+  });
 
 
 
