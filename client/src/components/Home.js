@@ -15,6 +15,7 @@ import Paginated from "./Paginated";
 import SearchBar from "./SearchBar";
 import "./css/Home.css";
 import imageNotFound from '../images/dogLost1.jpg'
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Home() {
   const [order, SetOrder] = useState("");
@@ -26,6 +27,7 @@ export default function Home() {
   const indexOfLastDog = currentPage * dogsPerPage;
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;
   const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog);
+  const [loading,setLoading] = useState(false);
   let containerTemps = "e";
 
   const paginated = (pageNumber) => {
@@ -34,6 +36,10 @@ export default function Home() {
   useEffect(() => {
     dispatch(getDogs());
     dispatch(getTemperaments());
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
   }, []);
 
   function handleClick(e) {
@@ -124,7 +130,7 @@ export default function Home() {
             <select onChange={(e) => handleFilterByTemperament(e)}>
               <option value="all">All Temperaments</option>
               <option value="all">Reset Temperaments</option>
-
+               
               {allTemperaments.map((el) => {
                 return (
                   <React.Fragment key={el}>
@@ -136,11 +142,25 @@ export default function Home() {
             </select>
           </div>
         </div>
-        <div className="pos-card">
+                
+
+        {loading?
+          <div className="loader">
+             <ClipLoader
+             color={'#F27070'}
+             loading={loading}
+             size={30}
+             aria-label="Loading Spinner"
+             data-testid="loader"
+           />
+           
+           </div>
+           : 
+           <div className="pos-card">
           {console.log(currentDogs)}
           {currentDogs?.map((c) => {
             return (
-              <div>
+              <div className="container-cards">
                 <Link to={"/dogs/" + c.id}>
                   <Card
                     name={c.name}
@@ -157,9 +177,11 @@ export default function Home() {
               </div>
             );
           })}
-        </div>
+        </div>}
+
+        
         <div>
-          {currentDogs.length===0? <img src={imageNotFound}/>: console.log("Hay imagen") }
+          {currentDogs.length===0 && !loading? <img src={imageNotFound}/>: console.log("Hay imagen") }
 
         </div>
         <Paginated

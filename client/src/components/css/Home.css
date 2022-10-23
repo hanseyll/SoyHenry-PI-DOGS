@@ -30,10 +30,6 @@ body {
   color: black;
 }
 
-.topnav a.active {
-  background-color: #2196F3;
-  color: white;
-}
 
 .topnav .search-container {
   float: right;
@@ -143,22 +139,7 @@ dos bordes con color y que giramos con transform: rotate(-45deg);
   margin: 5px;
   width: 300px;
 }
-.content-select i{
-	position: absolute;
-	right: 20px;
-	top: calc(50% - 13px);
-	width: 16px;
-	height: 16px;
-	display: block;
-	border-left:4px solid #2AC176;
-	border-bottom:4px solid #2AC176;
-	transform: rotate(-45deg); /* Giramos el cuadrado */
-	transition: all 0.25s ease;
-}
- 
-.content-select:hover i{
-	margin-top: 3px;
-}
+
 
 .title-home{
   margin-top: 40px;
@@ -233,3 +214,6 @@ h1{
   margin-bottom: 20px
 }
 
+.loader{
+  margin: 200px;
+}
