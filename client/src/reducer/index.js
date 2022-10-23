@@ -33,24 +33,16 @@ function rootReducer (state=initialState,action){
                 }
 
             case 'FILTER_CREATED':
-                const createdFilter = action.payload === 'created'? state.dogs.filter(el => el.createdInDB): action.payload==='api' ? state.allDogsCopy.filter(el => !el.createdInDB) : state.allDogsCopy
+                const createdFilter = action.payload === 'created'? state.allDogsCopy.filter(el => el.createdInDB): action.payload==='api' ? state.allDogsCopy.filter(el => !el.createdInDB) : state.allDogsCopy
                 return{
                     ...state,
                     dogs: createdFilter,
                     
                 }
             case 'ORDER_BY_NAME':
-                let sortedArr = action.payload === 'asc' ?
+                let sortedArr = action.payload === 'desc' ?
                 state.dogs.sort(function(a,b){
-                    if(a.name > b.name){
-                        return 1;
-                    }
-                    if(b.name > a.name){
-                        return -1;
-                    }
-                    return 0;
-                }):
-                state.dogs.sort(function(a,b){
+                 
                     if(a.name > b.name){
                         return -1;
                     }
@@ -58,6 +50,16 @@ function rootReducer (state=initialState,action){
                         return 1;
                     }
                     return 0
+                }):
+                state.dogs.sort(function(a,b){
+                        if(a.name > b.name){
+                         return 1;
+                     }
+                     if(b.name > a.name){
+                         return -1;
+                     }
+                     return 0;
+                 
                 })
                 return {
                     ...state,
@@ -65,7 +67,7 @@ function rootReducer (state=initialState,action){
                 }
 
                 case 'FILTER_BY_TEMPERAMENT':
-                    const allDogs3 = state.allDogsCopy;
+                    const allDogs3 = state.dogs;
                     const tempDogs = allDogs3.filter((dog) => {
                         if (dog.temperaments) {
                             const temperament =
