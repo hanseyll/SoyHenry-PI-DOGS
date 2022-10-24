@@ -6,9 +6,9 @@ import {
   filterDogsByWeight,
   filterCreated,
   orderByName,
-  filterByTemperament,
   getTemperaments,
-  orderByTemperament
+  orderByTemperament,
+  filterByTemperament
 } from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
@@ -17,7 +17,6 @@ import SearchBar from "./SearchBar";
 import "./css/Home.css";
 import imageNotFound from '../images/wrong404.png'
 import ClipLoader from "react-spinners/ClipLoader";
-import Error from './Error'
 
 export default function Home() {
   const [order, SetOrder] = useState("");
@@ -30,7 +29,6 @@ export default function Home() {
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;
   const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog);
   const [loading,setLoading] = useState(false);
-  let containerTemps = "e";
 
   const paginated = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -66,18 +64,17 @@ export default function Home() {
     e.preventDefault(e);
     dispatch(filterCreated(e.target.value));
     setCurrentPage(1);
-
-    console.log(currentDogs);
+    SetOrder(e.target.value);
   }
   function handleFilterByTemperament(e) {
     e.preventDefault(e);
     setCurrentPage(1);
-    dispatch(orderByTemperament(e.target.value));
+    dispatch(filterByTemperament(e.target.value));
     SetOrder(e.target.value);
   }
 
   return (
-    <div>
+    <div className="container-home">
       <div className="topnav">
         <Link
           onClick={(e) => {

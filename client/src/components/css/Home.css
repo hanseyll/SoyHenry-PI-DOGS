@@ -8,6 +8,10 @@ body {
   
 
 }
+.container-home{
+  background:linear-gradient(rgba(5,7,12,0.75), rgba(5,7,12,0.75)),
+ url(../../images/fondoF.jpg);
+}
 
 .topnav {
   overflow: hidden;
@@ -119,8 +123,7 @@ body {
 	background: #F27070;
 	font-size: 1em;
   color: white;
-	font-family: 
-	'Quicksand', sans-serif;
+  font-family: 'Roboto', sans-serif;
 	border:2px solid rgba(0,0,0,0.2);
     border-radius: 12px;
     position: relative;

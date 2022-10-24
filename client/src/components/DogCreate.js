@@ -94,7 +94,6 @@ function Form() {
     weight_min: "",
     weight_max: "",
     life_span: "",
-    yearOfLifeMax: "",
     temperament: [],
   });
 
@@ -236,12 +235,14 @@ function Form() {
       input.weight_min &&
       input.weight_max &&
       input.life_span &&
+      input.image &&
       input.temperament.length > 0
       && errors.name===null 
       && errors.weight_max===null &&
       errors.weight_min===null &&
       errors.height_max===null &&
-      errors.height_min===null 
+      errors.height_min===null  &&
+      errors.image===null
       
     ) {
       e.preventDefault();
