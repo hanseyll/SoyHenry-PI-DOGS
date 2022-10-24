@@ -217,3 +217,12 @@ h1{
 .loader{
   margin: 200px;
 }
+
+.back-img{
+  background-image: url(../../images/wrong404.png);
+  height: 500px;
+  margin-top: 20px;
+  text-align: center;
+  padding-top: 420px;
+}
+

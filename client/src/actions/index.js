@@ -11,6 +11,22 @@ export function getDogs(){
     }
 }
 
+
+// export function getDogs() {
+//     return function (dispatch) {
+//       axios.get("http://localhost:3001/dogs").then(res => {
+//         dispatch({
+//           type: 'GET_DOGS',
+//           payload: res.data
+//         })
+//       }).catch((error)=> console.log(error)) 
+//     };
+//   }
+
+
+
+
+
 export function filterDogsByWeight(payload){
     console.log(payload)
     return {
@@ -47,12 +63,10 @@ export function getTemperaments() {
 
 
     return async function (dispatch) {
-        // le paso la ruta que me cree en el back que me trae todos los personajes 
         var temperaments = await axios.get('http://localhost:3001/temperaments') 
         
         var temperamentsMap =temperaments.data.map(t => t.name)
 
-        //console.log('HOLA ESTOS SON LOS TEMPERAMENTOS: ' ,temperaments.data.map(el => el.name))
         return dispatch({
             type: 'GET_TEMPERAMENTS',
             payload: temperamentsMap
@@ -70,7 +84,7 @@ export function getNameDogs(name){
                 payload: json.data
             })
         } catch (error) {
-            console.log(error)
+            alert('Dog doesnt exist')
         }
     }
 
@@ -79,7 +93,6 @@ export function getNameDogs(name){
 export function postDog(payload){
     return async function(dispatch){
         const response = await axios.post('http://localhost:3001/dogs',payload)
-    console.log(response);
     return response;
     }
 }

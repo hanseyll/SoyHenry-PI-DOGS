@@ -26,7 +26,6 @@ function rootReducer (state=initialState,action){
                 const sortWeight = action.payload === 'weight_max' ?
                 state.dogs.sort( (prev, next) => Number(next.weight_max) - Number(prev.weight_max)) : action.payload ==='weight_min'?
                 state.dogs.sort( (prev, next) => Number(prev.weight_min) - Number(next.weight_min)) : action.payload = 'all'
-                console.log(state.allDogsCopy)
                 return {
                     ...state,
                     dogs: action.payload === 'all' ? state.dogs : sortWeight,
@@ -100,10 +99,7 @@ function rootReducer (state=initialState,action){
                     ...state,
                     dogs: action.payload
                 }
-                case 'POST_DOG':
-                    return{
-                        ...state,
-                    }
+              
                 case 'GET_DETAILS':
                     return{
                         ...state,

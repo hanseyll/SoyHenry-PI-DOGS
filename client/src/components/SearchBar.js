@@ -5,21 +5,25 @@ import { getNameDogs } from "../actions";
 
 export default function SearchBar (){
     const dispatch = useDispatch()
-    const [name,setName] = useState("")
+    const [input, setInput] = useState("");
 
     function handleInputChange(e){
-    e.preventDefault();
-    setName(e.target.value)
-    console.log(name)
+    setInput(e.target.value)
     }
     function handleSubmit(e){
         e.preventDefault()
-        dispatch(getNameDogs(name))
+        dispatch(getNameDogs(input))
+        setInput("");
+
+       // s
+        
+        
+       
         
     }
     return(
         <div>
-            <input type='text' placeholder="Buscar..." onChange={(e) => handleInputChange(e) }/>
+            <input type='text' value={input} placeholder="Buscar..." onChange={(e) => handleInputChange(e) }/>
             <button type="submit" onClick={(e)=> handleSubmit(e)}>Buscar</button>
         </div>
     )

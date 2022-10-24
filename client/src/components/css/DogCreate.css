@@ -5,7 +5,7 @@
 }
 
 .form-container {
-  width: 1200px;
+  width: 1000px;
   height: auto;
   padding: 30px;
   margin: auto;
@@ -26,7 +26,7 @@
 }
 
 .controls {
-  width: 550px;
+  width: 400px;
   height: 87px;
   background: #24303c;
   padding: 10px;
@@ -146,7 +146,7 @@
   margin-bottom: 20px;
 }
 
-.algo{
+.part-container{
   display: flex;
   justify-content: center;
   flex-direction: column;

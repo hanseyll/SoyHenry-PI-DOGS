@@ -10,6 +10,9 @@ function validate(e) {
   if (e.name === null || e.name === "" || e.name === undefined)
     error.name = "Write a name, dont be an asshole";
   else if (!isNaN(e.name)) error.name = "Only text";
+  else if( typeof e.name === 'string'){
+    error.name=null;
+  }
 
   if (e.height_min < 0 || e.height_min.includes("-"))
     error.height_min = "Write a valid number";
@@ -29,7 +32,10 @@ function validate(e) {
   else if (e.height_max < 0) error.height_max = "Write a valid number";
   else if (e.height_max < e.height_min)
     error.height_max = "Maximum height have to be higher";
-
+else if(e.height_max > e.height_min){
+  error.height_max=null;
+  error.height_min=null;
+}
   if (e.weight_min < 0) error.weight_min = "Write a valid number";
   else if (
     e.weight_min === "" ||
@@ -47,7 +53,10 @@ function validate(e) {
     error.weight_max = "write a maximum weight";
   else if (e.weight_max < e.weight_min)
     error.weight_max = "Maximum weight have to be heigher";
-
+    else if(e.weight_max > e.weight_min){
+      error.weight_max=null;
+      error.weight_min=null;
+    }
   if (e.life_span < 0) error.life_span = "Write a valid number";
   else if (
     e.life_span === "" ||
@@ -227,12 +236,18 @@ function Form() {
       input.weight_min &&
       input.weight_max &&
       input.life_span &&
-      input.image &&
       input.temperament.length > 0
+      && errors.name===null 
+      && errors.weight_max===null &&
+      errors.weight_min===null &&
+      errors.height_max===null &&
+      errors.height_min===null 
+      
     ) {
       e.preventDefault();
       dispatch(postDog(input));
       alert("you have created a dog!");
+      console.log(errors)
 
       setInput({
         name: "",
@@ -265,7 +280,7 @@ function Form() {
       <h1>Create your dog</h1>
       <form autocomplete="off" className="" onSubmit={(e) => handleSubmit(e)}>
         {/*Nombre de la raza del perrito*/}
-        <div className="algo">
+        <div className="part-container">
           <label className="label-text">Dog's name </label>
           <input
             className="controls"
@@ -280,7 +295,7 @@ function Form() {
 
         {/*Image */}
         <div>
-          <div className="algo">
+          <div className="part-container">
             <label className="label-text">Image </label>
             <input
               className="controls"
@@ -295,12 +310,13 @@ function Form() {
         </div>
 
         {/*Altura del perro*/}
-        <div className="algo">
+        <div className="part-container">
           <label className="label-text">Height </label>
           <input
             className="controls"
             type="number"
             min="1"
+            max="149"
             value={input.height_min}
             name="height_min"
             onChange={(e) => handleChangeheightMin(e)}
@@ -311,7 +327,8 @@ function Form() {
           <input
             className="controls"
             type="number"
-            min="1"
+            min="2"
+            max="150"
             value={input.height_max}
             name="height_max"
             onChange={(e) => handleChangeheightMax(e)}
@@ -321,12 +338,13 @@ function Form() {
         </div>
 
         {/*Peso del perro*/}
-        <div className="algo">
+        <div className="part-container">
           <label className="label-text">Weight</label>
           <input
             className="controls"
             type="number"
             min="1"
+            max="149"
             value={input.weight_min}
             name="weight_min"
             onChange={(e) => handleChangeweightMin(e)}
@@ -337,7 +355,7 @@ function Form() {
           <input
             className="controls"
             type="number"
-            min="1"
+            min="2"
             max="150"
             value={input.weight_max}
             name="weight_max"
@@ -348,12 +366,13 @@ function Form() {
         </div>
 
         {/*Años de vida*/}
-        <div className="algo">
+        <div className="part-container">
           <label className="label-text">Life Span </label>
           <input
             className="controls"
             type="number"
             min="1"
+            max="50"
             value={input.life_span}
             name="life_span"
             onChange={(e) => handleChangeLifeEstMin(e)}
@@ -363,7 +382,7 @@ function Form() {
         </div>
 
         {/*Select para añadir temperamentos*/}
-        <div className="algo">
+        <div className="part-container">
           <label className="label-text">Temperaments</label>
           <select
             className="controls-temp"
@@ -382,7 +401,7 @@ function Form() {
         </div>
 
         {/*Lista de temperamentos*/}
-        <div className="algo">
+        <div className="part-container">
           <h3 className="add-temperament-h3">Current temeperaments</h3>
           <div className="container-temperament">
             {input.temperament.length !== 0
@@ -416,3 +435,8 @@ function Form() {
 }
 
 export default Form;
+
+
+
+
+

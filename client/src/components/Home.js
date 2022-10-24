@@ -14,8 +14,9 @@ import Card from "./Card";
 import Paginated from "./Paginated";
 import SearchBar from "./SearchBar";
 import "./css/Home.css";
-import imageNotFound from '../images/dogLost1.jpg'
+import imageNotFound from '../images/wrong404.png'
 import ClipLoader from "react-spinners/ClipLoader";
+import Error from './Error'
 
 export default function Home() {
   const [order, SetOrder] = useState("");
@@ -57,7 +58,7 @@ export default function Home() {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
-    SetOrder(`order ready${e.target.value}`);
+    SetOrder(e.target.value);
   }
 
   function handleFilterCreated(e) {
@@ -100,7 +101,7 @@ export default function Home() {
         </div>
         
         <div className="box-1">
-          <div onClick={(e) => handleClick(e)} class="btn btn-one">
+          <div onClick={(e) => handleClick(e)} className="btn btn-one">
             <span>Reload dogs</span>
           </div>
         </div>
@@ -142,6 +143,22 @@ export default function Home() {
             </select>
           </div>
         </div>
+
+
+        {allDogs.length===0 && !loading? 
+           <div className="container-img">
+           <div className="back-img">
+           <div className="box-1">
+         <div onClick={(e) => handleClick(e)} className="btn btn-one">
+           <span>Back to home</span>
+         </div>
+       </div>
+         </div > 
+         
+        
+         </div>
+        
+          : console.log("Hay imagen") }
                 
 
         {loading?
@@ -161,6 +178,7 @@ export default function Home() {
           {currentDogs?.map((c) => {
             return (
               <div className="container-cards">
+                
                 <Link to={"/dogs/" + c.id}>
                   <Card
                     name={c.name}
@@ -174,6 +192,7 @@ export default function Home() {
                   />
                 </Link>
                 {/*  */}
+               
               </div>
             );
           })}
@@ -181,7 +200,7 @@ export default function Home() {
 
         
         <div>
-          {currentDogs.length===0 && !loading? <img src={imageNotFound}/>: console.log("Hay imagen") }
+        
 
         </div>
         <Paginated
@@ -194,3 +213,5 @@ export default function Home() {
     </div>
   );
 }
+
+
