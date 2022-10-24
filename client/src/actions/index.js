@@ -111,3 +111,10 @@ export function getDetail(id){
         }
     }
 }
+
+export const orderByTemperament =(payload) =>{
+    return{
+        type: 'ORDER_BY_TEMPERAMENT',
+        payload,
+    }
+}

@@ -1,6 +1,7 @@
 const initialState = {
     dogs: [],
     allDogsCopy: [],
+    orderByTemperament:[],
     temperaments: [],
     detail:[]
 }
@@ -13,7 +14,7 @@ function rootReducer (state=initialState,action){
                 ...state,
                 dogs: action.payload,
                 allDogsCopy: action.payload,
-                allDogsCopy2:action.payload,
+                orderByTemperament:action.payload,
             }
             case 'GET_TEMPERAMENTS':
                 return {
@@ -105,6 +106,15 @@ function rootReducer (state=initialState,action){
                         ...state,
                         detail: action.payload
 
+                    }
+                case 'ORDER_BY_TEMPERAMENT':
+                    const copyDogs = state.orderByTemperament;
+                    const filterByTemp = 
+                        action.payload=== 'all'? copyDogs: copyDogs.filter((dog) => dog.temperament?.includes(action.payload))
+                        console.log(action.payload)
+                    return{
+                        ...state,
+                        dogs: filterByTemp
                     }
             default:
                 return state;

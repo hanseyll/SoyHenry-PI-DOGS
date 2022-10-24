@@ -8,6 +8,7 @@ import {
   orderByName,
   filterByTemperament,
   getTemperaments,
+  orderByTemperament
 } from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
@@ -71,9 +72,8 @@ export default function Home() {
   function handleFilterByTemperament(e) {
     e.preventDefault(e);
     setCurrentPage(1);
-    dispatch(filterByTemperament(e.target.value));
-    containerTemps= containerTemps + " " + e.target.value
-    console.log(containerTemps);
+    dispatch(orderByTemperament(e.target.value));
+    SetOrder(e.target.value);
   }
 
   return (
