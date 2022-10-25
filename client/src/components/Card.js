@@ -15,11 +15,11 @@ export default function Card({name,weight_min,weight_max,height_min,height_max,i
             <img src={image?image:dogHelp} alt="img not found" className="image" ></img>
             </div>
         <div className="container-text">
-        <h3>{name}</h3>
-        <h5>{weight_min} - {weight_max} Kg</h5>
-        <h5> Temperaments</h5>
-        <h3>{temperamentsApi}</h3>
-        <h3>{temperamentsDB}</h3>
+        <p>{name}</p>
+        <p>{weight_min} - {weight_max} Kg</p>
+        <p> Temperaments</p>
+        <p>{temperamentsApi}</p>
+        <p>{temperamentsDB}</p>
         </div>
         </div> 
     )

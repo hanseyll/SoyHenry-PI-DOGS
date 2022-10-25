@@ -70,7 +70,7 @@ export default function Detail(props) {
         <p>loading...</p>
       )}
 
-      <Link to="/dogs">
+      <Link className="linkBack" to="/dogs">
       <div className="box-1">
          <div className="btn btn-one">
            <span>Back to home</span>

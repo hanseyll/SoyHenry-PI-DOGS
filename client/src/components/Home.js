@@ -103,25 +103,25 @@ export default function Home() {
         </div>
       </div>
       <div className="content-select">
+      <div className="select">
+          <select onChange={(e) => handleFilterCreated(e)}>
+            <option value="all">All dogs</option>
+            <option value="created">Database</option>
+            <option value="api">Api</option>
+          </select>
+        </div>
         <div className="select">
           <select onChange={(e) => handleSort(e)}>
-            <option value="DH">A-Z</option>
-            <option value="asc">Ascendent</option>
-            <option value="desc">Descendent</option>
+            <option value="DH">Sort alphabetically</option>
+            <option value="asc">A-Z</option>
+            <option value="desc">Z-A</option>
           </select>
         </div>
         <div className="select">
           <select onChange={(e) => orderByWeight(e)}>
-            <option value="all">order by weight</option>
-            <option value="weight_max">Weight_max</option>
-            <option value="weight_min">Weight_min</option>
-          </select>
-        </div>
-        <div className="select">
-          <select onChange={(e) => handleFilterCreated(e)}>
-            <option value="all">All</option>
-            <option value="created">Database</option>
-            <option value="api">Api</option>
+            <option value="all">Sort by weight</option>
+            <option value="weight_max">Ascending: 0-9</option>
+            <option value="weight_min">Descending: 9-0</option>
           </select>
         </div>
         <div className="select">
@@ -137,18 +137,25 @@ export default function Home() {
               );
             })}
           </select>
+          
         </div>
       </div>
 
       {allDogs.length === 0 && !loading ? (
+        <div>
+          <div className="title-error">
+            <h1>Doesn't exists any Dogs with temperaments you choose!</h1>
+            <h1>Reset temperaments!!</h1>
+          </div>
         <div className="container-img">
           <div className="back-img">
             <div className="box-1">
-              <div onClick={(e) => handleClick(e)} className="btn btn-one">
+              <div onClick={(e) => handleClick(e)} className="btn2 btn-one">
                 <span>Back to home</span>
               </div>
             </div>
           </div>
+        </div>
         </div>
       ) : (
         console.log("Hay imagen")

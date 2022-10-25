@@ -92,6 +92,7 @@ body {
   grid-template-columns: repeat(auto-fit,minmax(20rem, 20px));
   padding: 5%;
   text-decoration: none;
+  border-radius: 20px;
  
 }
 .container-cards{
@@ -168,6 +169,15 @@ h1{
   text-align: center;
   width: 250px;
   cursor: pointer;
+  
+}
+.btn2{
+  line-height: 50px;
+  height: 50px;
+  text-align: center;
+  width: 250px;
+  cursor: pointer;
+  background-color: #F27070;
 }
 .btn-one {
   color: #FFF;
@@ -195,6 +205,7 @@ h1{
   border-top-color: rgba(255,255,255,0.5);
   border-bottom-color: rgba(255,255,255,0.5);
   transform: scale(0.1, 1);
+  
 }
 .btn-one:hover span {
   letter-spacing: 2px;
@@ -235,3 +246,7 @@ h1{
   padding-top: 420px;
 }
 
+.title-error{
+  color: white;
+  margin-top: 3%;
+}

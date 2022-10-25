@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .image{
@@ -13,7 +13,7 @@
     border-radius: 20px;
 }
 .container-img{
-height: 250px;
+height: 200px;
 }
 .container{
     width: 100%;
@@ -26,19 +26,23 @@ height: 250px;
 h3,h5{
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
+    margin: 20px;
 }
 
 .card-container:hover{
-    transform: scale(1.1);
+    transform: scale(0.95);
     box-shadow: 0px 0px 15px 0px;
     transition: 0.5s;
     background-color: #F27070;
     color: white;
     text-decoration: none;
+    border-radius: 20px;
 } 
 
 .card-container{
     color: white;
     text-decoration: none;
+    
+   
    
 }
