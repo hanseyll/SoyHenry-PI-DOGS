@@ -8,14 +8,14 @@ import {
   orderByName,
   getTemperaments,
   orderByTemperament,
-  filterByTemperament
+  filterByTemperament,
 } from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import Paginated from "./Paginated";
 import SearchBar from "./SearchBar";
 import "./css/Home.css";
-import imageNotFound from '../images/wrong404.png'
+import imageNotFound from "../images/wrong404.png";
 import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Home() {
@@ -28,7 +28,7 @@ export default function Home() {
   const indexOfLastDog = currentPage * dogsPerPage;
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;
   const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog);
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const paginated = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -36,16 +36,16 @@ export default function Home() {
   useEffect(() => {
     dispatch(getDogs());
     dispatch(getTemperaments());
-    setLoading(true)
+    setLoading(true);
     setTimeout(() => {
-      setLoading(false)
-    }, 1000)
+      setLoading(false);
+    }, 1000);
   }, []);
 
   function handleClick(e) {
     e.preventDefault();
     dispatch(getDogs());
-    setCurrentPage(1)
+    setCurrentPage(1);
   }
   function orderByWeight(e) {
     e.preventDefault(e);
@@ -93,90 +93,84 @@ export default function Home() {
           </form>
         </div>
       </div>
-        <div className="title-home">
+      <div className="title-home">
         <h1>Dog world</h1>
-        </div>
-        
-        <div className="box-1">
-          <div onClick={(e) => handleClick(e)} className="btn btn-one">
-            <span>Reload dogs</span>
-          </div>
-        </div>
-        <div className="content-select">
-          <div className="select">
-            <select onChange={(e) => handleSort(e)}>
-              <option value="DH">A-Z</option>
-              <option value="asc">Ascendent</option>
-              <option value="desc">Descendent</option>
-            </select>
-          </div>
-          <div className="select">
-            <select onChange={(e) => orderByWeight(e)}>
-              <option value="all">order by weight</option>
-              <option value="weight_max">Weight_max</option>
-              <option value="weight_min">Weight_min</option>
-            </select>
-          </div>
-          <div className="select">
-            <select onChange={(e) => handleFilterCreated(e)}>
-              <option value="all">All</option>
-              <option value="created">Database</option>
-              <option value="api">Api</option>
-            </select>
-          </div>
-          <div className="select">
-            <select onChange={(e) => handleFilterByTemperament(e)}>
-              <option value="all">All Temperaments</option>
-              <option value="all">Reset Temperaments</option>
-               
-              {allTemperaments.map((el) => {
-                return (
-                  <React.Fragment key={el}>
-                    <option value={el}>{el}</option>
-                  </React.Fragment>
-                );
-              })
-              }
-            </select>
-          </div>
-        </div>
+      </div>
 
+      <div className="box-1">
+        <div onClick={(e) => handleClick(e)} className="btn btn-one">
+          <span>Reload dogs</span>
+        </div>
+      </div>
+      <div className="content-select">
+        <div className="select">
+          <select onChange={(e) => handleSort(e)}>
+            <option value="DH">A-Z</option>
+            <option value="asc">Ascendent</option>
+            <option value="desc">Descendent</option>
+          </select>
+        </div>
+        <div className="select">
+          <select onChange={(e) => orderByWeight(e)}>
+            <option value="all">order by weight</option>
+            <option value="weight_max">Weight_max</option>
+            <option value="weight_min">Weight_min</option>
+          </select>
+        </div>
+        <div className="select">
+          <select onChange={(e) => handleFilterCreated(e)}>
+            <option value="all">All</option>
+            <option value="created">Database</option>
+            <option value="api">Api</option>
+          </select>
+        </div>
+        <div className="select">
+          <select onChange={(e) => handleFilterByTemperament(e)}>
+            <option value="all">All Temperaments</option>
+            <option value="all">Reset Temperaments</option>
 
-        {allDogs.length===0 && !loading? 
-           <div className="container-img">
-           <div className="back-img">
-           <div className="box-1">
-         <div onClick={(e) => handleClick(e)} className="btn btn-one">
-           <span>Back to home</span>
-         </div>
-       </div>
-         </div > 
-         
-        
-         </div>
-        
-          : console.log("Hay imagen") }
-                
+            {allTemperaments.map((el) => {
+              return (
+                <React.Fragment key={el}>
+                  <option value={el}>{el}</option>
+                </React.Fragment>
+              );
+            })}
+          </select>
+        </div>
+      </div>
 
-        {loading?
-          <div className="loader">
-             <ClipLoader
-             color={'#F27070'}
-             loading={loading}
-             size={30}
-             aria-label="Loading Spinner"
-             data-testid="loader"
-           />
-           
-           </div>
-           : 
-           <div className="pos-card">
+      {allDogs.length === 0 && !loading ? (
+        <div className="container-img">
+          <div className="back-img">
+            <div className="box-1">
+              <div onClick={(e) => handleClick(e)} className="btn btn-one">
+                <span>Back to home</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        console.log("Hay imagen")
+      )}
+
+      {loading ? (
+        <div className="loader">
+          <ClipLoader
+            color={"#F27070"}
+            loading={loading}
+            size={30}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      ) : (
+        <div className="pos-card">
           {console.log(currentDogs)}
           {currentDogs?.map((c) => {
             return (
-              <div className="container-cards">
-                
-                <Link to={"/dogs/" + c.id}>
+              <div >
+                <Link to={"/dogs/" + c.id} className="container-cards">
                   <Card
                     name={c.name}
                     weight_min={c.weight_min}
@@ -185,30 +179,27 @@ export default function Home() {
                     height_max={c.height_max}
                     image={c.image}
                     temperamentsApi={c.temperament}
-                    temperamentsDB={c.temperaments? c.temperaments.map((el) => el.name + ", "): console.log('ready')}
+                    temperamentsDB={
+                      c.temperaments
+                        ? c.temperaments.map((el) => el.name + ", ")
+                        : console.log("ready")
+                    }
                   />
                 </Link>
                 {/*  */}
-               
               </div>
             );
           })}
-        </div>}
-
-        
-        <div>
-        
-
         </div>
-        <Paginated
-          dogsPerPage={dogsPerPage}
-          allDogs={allDogs.length}
-          paginated={paginated}
-          currentPage={currentPage}
-        />
-      
+      )}
+
+      <div></div>
+      <Paginated
+        dogsPerPage={dogsPerPage}
+        allDogs={allDogs.length}
+        paginated={paginated}
+        currentPage={currentPage}
+      />
     </div>
   );
 }
-
-

@@ -94,6 +94,12 @@ body {
   text-decoration: none;
  
 }
+.container-cards{
+  text-decoration: none;
+}
+
+
+
 .content-input input,
 .content-select select{
 	appearance: none;

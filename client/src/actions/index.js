@@ -2,60 +2,67 @@ import axios from 'axios';
 
 export function getDogs(){
     return async function(dispatch){
-        var json = await axios.get('http://localhost:3001/dogs',{});
+        try {
+            var json = await axios.get('http://localhost:3001/dogs',{});
         return dispatch({
             type: 'GET_DOGS',
             payload: json.data
 
         })
+        } catch (error) {
+            console.log(error)
+            
+        }
     }
 }
 
-
-// export function getDogs() {
-//     return function (dispatch) {
-//       axios.get("http://localhost:3001/dogs").then(res => {
-//         dispatch({
-//           type: 'GET_DOGS',
-//           payload: res.data
-//         })
-//       }).catch((error)=> console.log(error)) 
-//     };
-//   }
-
-
-
-
-
 export function filterDogsByWeight(payload){
-    console.log(payload)
-    return {
-        type: 'FILTER_BY_WEIGHT',
-        payload
-        
+    try {
+        return {
+            type: 'FILTER_BY_WEIGHT',
+            payload
+            
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
 
 export function filterCreated(payload){
+   try {
     return{
         type: 'FILTER_CREATED',
         payload
     }
 
+   } catch (error) {
+    console.log(error)
+   }
+
 }
 
 export function orderByName(payload){
+   try {
     return{
         type: 'ORDER_BY_NAME',
         payload
     }
+
+   } catch (error) {
+        console.log(error)
+   }
 }
 
 export function filterByTemperament(payload){
-    return{
-        type: 'FILTER_BY_TEMPERAMENT',
-        payload
+    try {
+        return{
+            type: 'FILTER_BY_TEMPERAMENT',
+            payload
+        }
+    } catch (error) {
+        console.log(error)
     }
+   
 }
 
 
@@ -63,7 +70,9 @@ export function getTemperaments() {
 
 
     return async function (dispatch) {
-        var temperaments = await axios.get('http://localhost:3001/temperaments') 
+        try {
+
+            var temperaments = await axios.get('http://localhost:3001/temperaments') 
         
         var temperamentsMap =temperaments.data.map(t => t.name)
 
@@ -72,6 +81,13 @@ export function getTemperaments() {
             payload: temperamentsMap
         })
 
+
+            
+        } catch (error) {
+            console.log(error)
+            
+        }
+        
     }
 }
 
@@ -92,8 +108,13 @@ export function getNameDogs(name){
 
 export function postDog(payload){
     return async function(dispatch){
-        const response = await axios.post('http://localhost:3001/dogs',payload)
-    return response;
+        try {
+            const response = await axios.post('http://localhost:3001/dogs',payload)
+            return response;
+        } catch (error) {
+            console.log(error)
+        }
+       
     }
 }
 
@@ -113,8 +134,12 @@ export function getDetail(id){
 }
 
 export const orderByTemperament =(payload) =>{
+   try {
     return{
         type: 'ORDER_BY_TEMPERAMENT',
         payload,
     }
+   } catch (error) {
+    console.log(error)
+   }
 }

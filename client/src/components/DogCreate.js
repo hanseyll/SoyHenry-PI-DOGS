@@ -10,6 +10,7 @@ function validate(e) {
   if (e.name === null || e.name === "" || e.name === undefined)
     error.name = "Write a name, dont be an asshole";
   else if (!isNaN(e.name)) error.name = "Only text";
+  else if(e.name.length > 30) error.name= 'you have to wirite a name with maximum 30 letters'
   else if( typeof e.name === 'string'){
     error.name=null;
   }
@@ -235,14 +236,12 @@ function Form() {
       input.weight_min &&
       input.weight_max &&
       input.life_span &&
-      input.image &&
       input.temperament.length > 0
       && errors.name===null 
       && errors.weight_max===null &&
       errors.weight_min===null &&
       errors.height_max===null &&
-      errors.height_min===null  &&
-      errors.image===null
+      errors.height_min===null  
       
     ) {
       e.preventDefault();
@@ -278,7 +277,7 @@ function Form() {
 
   return (
     <div className="form-container">
-      <h1>Create your dog</h1>
+      <h1>Creating a breed</h1>
       <form autocomplete="off" className="" onSubmit={(e) => handleSubmit(e)}>
         {/*Nombre de la raza del perrito*/}
         <div className="part-container">
@@ -427,9 +426,8 @@ function Form() {
           </button>
         </div>
       </form>
-      <Link to="/dogs">
-        {" "}
-        <button>back </button>
+      <Link className="container-back"  to="/dogs">
+        <button className="botonBack">Back </button>
       </Link>
     </div>
   );

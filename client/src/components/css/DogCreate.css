@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 .form-container {
@@ -22,8 +24,8 @@
 }
 
 .form-container h1 {
-  font-size: 52px;
-  margin-bottom: 20px;
+  margin-bottom: 70px;
+  font-weight: bolder;
 }
 
 .controls {
@@ -156,4 +158,31 @@
 }
 .error{
   color: #953430;
+}
+
+.container-back{
+  width: 60%;
+}
+.botonBack{
+  width: 550px;
+  background: #3f4042;
+  border: none;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  font-size: 26px;
+  transition: 0.5s;
+  border-radius: 15px;
+}
+.botonBack:hover{
+  width: 100%;
+  background: #D7001A;
+  border: none;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  font-size: 36px;
+  transition: 0.5s;
+  border-radius: 15px;
+  
 }

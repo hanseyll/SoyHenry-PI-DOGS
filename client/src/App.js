@@ -4,7 +4,6 @@ import  LandingPage from './components/LandingPage'
 import Home from "./components/Home";
 import DogsCreate from "./components/DogCreate";
 import Detail from "./components/Detail";
-import fondo from './images/fondo.jpg'
 function App() {
   return (
     <BrowserRouter>
