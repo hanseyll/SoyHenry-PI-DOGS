@@ -1,16 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../actions/index";
 import { useEffect } from "react";
 import imgDefault from "../images/dogLost1.jpg";
+import ClipLoader from "react-spinners/ClipLoader";
 import "./css/Detail.css";
 
 export default function Detail(props) {
-  console.log(props);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, [dispatch]);
 
   const myDog = useSelector((state) => state.detail);
@@ -22,7 +27,7 @@ export default function Detail(props) {
 
   return (
     <div>
-      {myDog.length > 0 ? (
+      {myDog.length > 0  && !loading? (
         <div className="container-detail">
           <div className="item">
             <img
@@ -66,7 +71,15 @@ export default function Detail(props) {
           </div>
         </div>
       ) : (
-        <p></p>
+        <div className="loader">
+          <ClipLoader
+            color={"#F27070"}
+            loading={loading}
+            size={30}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
       )}
 
       <Link className="linkBack" to="/dogs">

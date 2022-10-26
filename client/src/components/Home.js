@@ -165,7 +165,6 @@ export default function Home() {
       </div>
       {tempShow ? (
         <div className="container-all-temperaments">
-
           <div className="container-p-temperaments">
           <p className="temperamentsShow">{tempShow}</p>
           </div>
