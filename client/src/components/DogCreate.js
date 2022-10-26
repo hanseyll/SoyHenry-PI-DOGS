@@ -32,10 +32,10 @@ function validate(e) {
     e.height_max === undefined
   )
     error.height_max = "Write a maximum height";
-  else if (e.height_max < 0) error.height_max = "Write a valid number";
-  else if (e.height_max < e.height_min)
+  else if (Number(e.height_max) < 0) error.height_max = "Write a valid number";
+  else if (Number(e.height_max) <  Number(e.height_min))
     error.height_max = "Maximum height have to be higher";
-  else if (e.height_max > e.height_min) {
+  else if (Number(e.height_max) > Number(e.height_min)) {
     error.height_max = null;
     error.height_min = null;
   }
@@ -47,16 +47,16 @@ function validate(e) {
   )
     error.weight_min = "write a minimun weight";
 
-  if (e.weight_max < 0) error.weight_max = "Write a valid number";
+  if (Number(e.weight_max) < 0) error.weight_max = "Write a valid number";
   else if (
     e.weight_max === "" ||
     e.weight_max === null ||
     e.weight_max === undefined
   )
     error.weight_max = "write a maximum weight";
-  else if (e.weight_max < e.weight_min)
+  else if (Number(e.weight_max) < Number(e.weight_min))
     error.weight_max = "Maximum weight have to be heigher";
-  else if (e.weight_max > e.weight_min) {
+  else if (Number(e.weight_max) > Number(e.weight_min)) {
     error.weight_max = null;
     error.weight_min = null;
   }
@@ -92,11 +92,11 @@ function Form() {
   const [input, setInput] = useState({
     name: "",
     image: "",
-    height_min: "",
-    height_max: "",
-    weight_min: "",
-    weight_max: "",
-    life_span: "",
+    height_min: '',
+    height_max: '',
+    weight_min: '',
+    weight_max: '',
+    life_span: '',
     temperament: [],
   });
 
@@ -253,11 +253,11 @@ function Form() {
       setInput({
         name: "",
         image: "",
-        height_min: "",
-        height_max: "",
-        weight_min: "",
-        weight_max: "",
-        life_span: "",
+        height_min: '',
+        height_max: '',
+        weight_min: '',
+        weight_max: '',
+        life_span: '',
         temperament: [],
       });
 
@@ -287,7 +287,6 @@ function Form() {
             className="controls"
             type="text"
             value={input.name}
-            title="You have to use only letters"
             name="name"
             placeholder="name"
             onChange={(e) => handleChange(e)}
