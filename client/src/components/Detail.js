@@ -66,7 +66,7 @@ export default function Detail(props) {
           </div>
         </div>
       ) : (
-        <p>loading...</p>
+        <p></p>
       )}
 
       <Link className="linkBack" to="/dogs">
