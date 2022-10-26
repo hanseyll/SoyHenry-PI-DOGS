@@ -88,7 +88,10 @@ export default function Home() {
       e.target.value !== "created" &&
       e.target.value !== "api"
     ) {
-      SetTempShow(tempShow + " " + e.target.value);
+        if(!tempShow.includes(e.target.value)){
+          SetTempShow(tempShow + " " + e.target.value);
+        }
+
     } else {
       SetTempShow("");
     }
@@ -161,10 +164,13 @@ export default function Home() {
         </div>
       </div>
       {tempShow ? (
-        <div className="container-temperaments">
-          <p className="temperamentsShow">Selected temperaments</p>
+        <div className="container-all-temperaments">
+
+          <div className="container-p-temperaments">
           <p className="temperamentsShow">{tempShow}</p>
+          </div>
         </div>
+        
       ) : (
         "null"
       )}

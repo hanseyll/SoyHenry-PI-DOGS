@@ -277,4 +277,14 @@ h1{
 }
 .container-temperaments{
   background-color: #F27070;
+  border-radius: 20px;
+  display: inline-block;
+}
+.container-p-temperaments{
+  background-color: #F27070;
+  border-radius: 20px;
+  display: inline-block;
+}
+.container-all-temperaments{
+  margin-top: 20px;
 }
