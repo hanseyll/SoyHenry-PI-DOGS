@@ -264,7 +264,7 @@ function Form() {
       history.push("/dogs");
     } else {
       e.preventDefault();
-      alert("Wrong, you have to complete form");
+      alert("Wrong, you have to complete correctly form");
     }
   }
 
