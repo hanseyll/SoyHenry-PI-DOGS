@@ -2,20 +2,25 @@ import axios from 'axios';
 
 export function getDogs(){
     return async function(dispatch){
-        try {
-            var json = await axios.get('http://localhost:3001/dogs',{});
-        return dispatch({
-            type: 'GET_DOGS',
-            payload: json.data
-
-        })
-        } catch (error) {
-            console.log(error)
-            
-        }
+        axios.get('http://localhost:3001/dogs').then((res) => {
+            dispatch({
+                type:'GET_DOGS',
+                payload: res.data
+            })
+        }).catch((error) => console.log(error))
     }
 }
+// try {
+//     var json = await axios.get('http://localhost:3001/dogs',{});
+// return dispatch({
+//     type: 'GET_DOGS',
+//     payload: json.data
 
+// })
+// } catch (error) {
+//     console.log(error)
+    
+// }
 export function filterDogsByWeight(payload){
     try {
         return {

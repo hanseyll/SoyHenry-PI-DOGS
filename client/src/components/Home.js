@@ -19,7 +19,8 @@ import imageNotFound from "../images/wrong404.png";
 import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Home() {
-  const [order, SetOrder] = useState("");
+  const [order, SetOrder] = useState('');
+  const [tempShow,SetTempShow]= (useState([]))
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs); //trae del reducer el estado dogs
   const allTemperaments = useSelector((state) => state.temperaments);
@@ -46,6 +47,7 @@ export default function Home() {
     e.preventDefault();
     dispatch(getDogs());
     setCurrentPage(1);
+    SetOrder("");
   }
   function orderByWeight(e) {
     e.preventDefault(e);
@@ -65,12 +67,28 @@ export default function Home() {
     dispatch(filterCreated(e.target.value));
     setCurrentPage(1);
     SetOrder(e.target.value);
+    if(e.target.value ==='api' || e.target.value=== 'created' || e.target.value=== 'all'){
+      SetTempShow('')
+    }
   }
   function handleFilterByTemperament(e) {
     e.preventDefault(e);
     setCurrentPage(1);
     dispatch(filterByTemperament(e.target.value));
-    SetOrder(e.target.value);
+    if (
+      e.target.value !== "all" &&
+      e.target.value !== "weight_max" &&
+      e.target.value !== "weight_min" &&
+      e.target.value !== "desc" &&
+      e.target.value !== "asc" &&
+      e.target.value !== "DH" &&
+      e.target.value !== "created" &&
+      e.target.value !== "api"
+    ) {
+      SetTempShow(tempShow + " " + e.target.value);
+    } else {
+      SetTempShow("");
+    }
   }
 
   return (
@@ -94,7 +112,7 @@ export default function Home() {
         </div>
       </div>
       <div className="title-home">
-        <h1>Dog world</h1>
+        <h1 className="title-main-h1">Dog App</h1>
       </div>
 
       <div className="box-1">
@@ -103,7 +121,7 @@ export default function Home() {
         </div>
       </div>
       <div className="content-select">
-      <div className="select">
+        <div className="select">
           <select onChange={(e) => handleFilterCreated(e)}>
             <option value="all">All dogs</option>
             <option value="created">Database</option>
@@ -137,25 +155,34 @@ export default function Home() {
               );
             })}
           </select>
-          
         </div>
       </div>
+      {tempShow ? (
+        <div className="container-temperaments">
+          <p className="temperamentsShow">Selected temperaments</p>
+          <p className="temperamentsShow">{tempShow}</p>
+        </div>
+      ) : (
+        "null"
+      )}
 
       {allDogs.length === 0 && !loading ? (
         <div>
           <div className="title-error">
-            <h1>Doesn't exists any Dogs with temperaments you choose!</h1>
-            <h1>Reset temperaments!!</h1>
+            <h1 className="title-error-h1">
+              Doesn't exists any Dogs with temperaments you choose!
+            </h1>
+            <h1 className="title-error-h1">Reset temperaments!</h1>
           </div>
-        <div className="container-img">
-          <div className="back-img">
-            <div className="box-1">
-              <div onClick={(e) => handleClick(e)} className="btn2 btn-one">
-                <span>Back to home</span>
+          <div className="container-img">
+            <div className="back-img">
+              <div className="box-1">
+                <div onClick={(e) => handleClick(e)} className="btn2 btn-one">
+                  <span>Back to home</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       ) : (
         console.log("Hay imagen")
@@ -176,7 +203,7 @@ export default function Home() {
           {console.log(currentDogs)}
           {currentDogs?.map((c) => {
             return (
-              <div >
+              <div>
                 <Link to={"/dogs/" + c.id} className="container-cards">
                   <Card
                     name={c.name}

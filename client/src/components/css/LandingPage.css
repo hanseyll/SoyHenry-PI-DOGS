@@ -15,9 +15,9 @@
  
 
     background:linear-gradient(rgba(5,7,12,0.75), rgba(5,7,12,0.75)),
-    url(../../images/wallpaperLanding.jpg);
+    url(../../images/fondofei5.jpg);
    background-repeat: no-repeat;
-   background-position: center center;
+   background-position: center ;
    background-attachment: fixed;
    background-size: cover;
     z-index: -1;
@@ -28,7 +28,7 @@
   
   .title_landing{
     color: transparent;
-    -webkit-text-stroke: 2px #F27070; /*-webkit es el procesador, este es para google chrome*/
+    -webkit-text-stroke: 6px #F27070;
   }
   
   .titleanddetail{
@@ -47,7 +47,7 @@
   
   .link_landing {
       text-decoration: none;
-      border: 1px solid white;
+      
       color: #F27070;
       font-size: 35px;
       padding: 15px;

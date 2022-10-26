@@ -31,7 +31,7 @@ export default function Detail(props) {
              
             />
           </div>
-          <div className="item" >
+          <div id="containerData" className="item" >
             <div className="container-all-data-details">
             <div className="container-title-details">
               <h1>I'm {myDog[0].name}</h1>

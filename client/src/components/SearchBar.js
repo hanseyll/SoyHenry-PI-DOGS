@@ -23,8 +23,8 @@ export default function SearchBar (){
     }
     return(
         <div>
-            <input type='text' value={input} placeholder="Buscar..." onChange={(e) => handleInputChange(e) }/>
-            <button type="submit" onClick={(e)=> handleSubmit(e)}>Buscar</button>
+            <input type='text' value={input} placeholder="Search..." onChange={(e) => handleInputChange(e) }/>
+            <button type="submit" onClick={(e)=> handleSubmit(e)}>Search</button>
         </div>
     )
 }

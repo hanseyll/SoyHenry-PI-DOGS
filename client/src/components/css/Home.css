@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 
 * {box-sizing: border-box;}
@@ -32,6 +31,7 @@ body {
 .topnav a:hover {
   background-color: #ddd;
   color: black;
+  transition: 0.5;
 }
 
 
@@ -44,6 +44,15 @@ body {
   margin-top: 8px;
   font-size: 17px;
   border: none;
+  width: 50%;
+  
+
+}
+.topnav input[type=text]:focus {
+ width: 70%;
+ transition: 0.5s;
+  
+
 }
 
 .topnav .search-container button {
@@ -51,14 +60,16 @@ body {
   padding: 6px;
   margin-top: 8px;
   margin-right: 16px;
-  background: #ddd;
+  background: transparent;
   font-size: 17px;
   border: none;
   cursor: pointer;
+  color: white;
 }
 
 .topnav .search-container button:hover {
-  background: #ccc;
+  background: white;
+  color: black;
 }
 
 @media screen and (max-width: 600px) {
@@ -249,4 +260,21 @@ h1{
 .title-error{
   color: white;
   margin-top: 3%;
+ 
+}
+
+.title-error-h1{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
+.title-main-h1{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+.temperamentsShow{
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+.container-temperaments{
+  background-color: #F27070;
 }

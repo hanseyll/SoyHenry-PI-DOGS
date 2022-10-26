@@ -4,9 +4,13 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+
 }
 
 .form-container {
+  background-color: #F27070;
+  background:linear-gradient(rgba(246, 98, 98, 0.75), rgba(246, 98, 98, 0.75)), url(../../images/fondofei3.jpg);
+  
   width: 1000px;
   height: auto;
   padding: 30px;
@@ -24,8 +28,10 @@
 }
 
 .form-container h1 {
-  margin-bottom: 70px;
+  margin-bottom: 60px;
   font-weight: bolder;
+  font-weight: 300;
+  letter-spacing: 3px;
 }
 
 .controls {
@@ -158,6 +164,7 @@
 }
 .error{
   color: #953430;
+  font-weight: bold;
 }
 
 .container-back{
