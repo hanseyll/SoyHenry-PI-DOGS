@@ -28,42 +28,41 @@ export default function Detail(props) {
             <img
               id="imgDetail"
               src={myDog[0].image ? myDog[0].image : imgDefault}
-             
             />
           </div>
-          <div id="containerData" className="item" >
+          <div id="containerData" className="item">
             <div className="container-all-data-details">
-            <div className="container-title-details">
-              <h1>I'm {myDog[0].name}</h1>
+              <div className="container-title-details">
+                <h1>I'm {myDog[0].name}</h1>
+              </div>
+              <div className="container-temperaments-details">
+                <h2>Temperaments </h2>
+                <p>
+                  {!myDog[0].createdInDB
+                    ? myDog[0].temperament + " "
+                    : myDog[0].temperaments.map((el) => el.name + " ")}
+                </p>
+              </div>
+              <div className="container-data"></div>
+              <div className="container-data-weight">
+                <h2>Weight</h2>
+                <p>
+                  {" "}
+                  {myDog[0].weight_min + " -"} {myDog[0].weight_max}
+                </p>
+              </div>
+              <div className="container-data-height">
+                <h2>Height </h2>
+                <p>
+                  {" "}
+                  {myDog[0].height_min + " -"} {myDog[0].height_max}
+                </p>
+              </div>
+              <div className="container-data-lifeSpan">
+                <h2>LifeSpan </h2>
+                <p>{myDog[0].life_span}</p>
+              </div>
             </div>
-            <div className="container-temperaments-details">
-              <h2>Temperaments </h2>
-              <p>
-                {!myDog[0].createdInDB
-                  ? myDog[0].temperament + " "
-                  : myDog[0].temperaments.map((el) => el.name + " ")}
-              </p>
-            </div>
-            <div className="container-data"></div>
-            <div className="container-data-weight">
-              <h2>Weight</h2>
-              <p>
-                {" "}
-                {myDog[0].weight_min + " -"} {myDog[0].weight_max}
-              </p>
-            </div>
-            <div className="container-data-height">
-              <h2>Height </h2>
-              <p>
-                {" "}
-                {myDog[0].height_min + " -"} {myDog[0].height_max}
-              </p>
-            </div>
-            <div className="container-data-lifeSpan">
-              <h2>LifeSpan </h2>
-              <p>{myDog[0].life_span}</p>
-            </div>
-          </div>
           </div>
         </div>
       ) : (
@@ -71,11 +70,11 @@ export default function Detail(props) {
       )}
 
       <Link className="linkBack" to="/dogs">
-      <div className="box-1">
-         <div className="btn btn-one">
-           <span>Back to home</span>
-         </div>
-       </div>
+        <div className="box-1">
+          <div className="btn btn-one">
+            <span>Back to home</span>
+          </div>
+        </div>
       </Link>
     </div>
   );

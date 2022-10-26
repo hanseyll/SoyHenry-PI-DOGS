@@ -10,9 +10,11 @@ function validate(e) {
   if (e.name === null || e.name === "" || e.name === undefined)
     error.name = "Write a name, dont be an asshole";
   else if (!isNaN(e.name)) error.name = "Only text";
-  else if(e.name.length > 30) error.name= 'you have to wirite a name with maximum 30 letters'
-  else if( typeof e.name === 'string'){
-    error.name=null;
+  else if (e.name.length > 30)
+    error.name = "you have to wirite a name with maximum 30 letters";
+
+  else if (typeof e.name === "string") {
+    error.name = null;
   }
 
   if (e.height_min < 0 || e.height_min.includes("-"))
@@ -33,10 +35,10 @@ function validate(e) {
   else if (e.height_max < 0) error.height_max = "Write a valid number";
   else if (e.height_max < e.height_min)
     error.height_max = "Maximum height have to be higher";
-else if(e.height_max > e.height_min){
-  error.height_max=null;
-  error.height_min=null;
-}
+  else if (e.height_max > e.height_min) {
+    error.height_max = null;
+    error.height_min = null;
+  }
   if (e.weight_min < 0) error.weight_min = "Write a valid number";
   else if (
     e.weight_min === "" ||
@@ -54,10 +56,10 @@ else if(e.height_max > e.height_min){
     error.weight_max = "write a maximum weight";
   else if (e.weight_max < e.weight_min)
     error.weight_max = "Maximum weight have to be heigher";
-    else if(e.weight_max > e.weight_min){
-      error.weight_max=null;
-      error.weight_min=null;
-    }
+  else if (e.weight_max > e.weight_min) {
+    error.weight_max = null;
+    error.weight_min = null;
+  }
   if (e.life_span < 0) error.life_span = "Write a valid number";
   else if (
     e.life_span === "" ||
@@ -236,18 +238,17 @@ function Form() {
       input.weight_min &&
       input.weight_max &&
       input.life_span &&
-      input.temperament.length > 0
-      && errors.name===null 
-      && errors.weight_max===null &&
-      errors.weight_min===null &&
-      errors.height_max===null &&
-      errors.height_min===null  
-      
+      input.temperament.length > 0 &&
+      errors.name === null &&
+      errors.weight_max === null &&
+      errors.weight_min === null &&
+      errors.height_max === null &&
+      errors.height_min === null
     ) {
       e.preventDefault();
       dispatch(postDog(input));
       alert("you have created a dog!");
-      console.log(errors)
+      console.log(errors);
 
       setInput({
         name: "",
@@ -286,6 +287,7 @@ function Form() {
             className="controls"
             type="text"
             value={input.name}
+            title="You have to use only letters"
             name="name"
             placeholder="name"
             onChange={(e) => handleChange(e)}
@@ -426,7 +428,7 @@ function Form() {
           </button>
         </div>
       </form>
-      <Link className="container-back"  to="/dogs">
+      <Link className="container-back" to="/dogs">
         <button className="botonBack">Back </button>
       </Link>
     </div>
@@ -434,8 +436,3 @@ function Form() {
 }
 
 export default Form;
-
-
-
-
-

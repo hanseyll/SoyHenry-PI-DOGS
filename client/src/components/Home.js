@@ -7,7 +7,6 @@ import {
   filterCreated,
   orderByName,
   getTemperaments,
-  orderByTemperament,
   filterByTemperament,
 } from "../actions";
 import { Link } from "react-router-dom";
@@ -15,12 +14,11 @@ import Card from "./Card";
 import Paginated from "./Paginated";
 import SearchBar from "./SearchBar";
 import "./css/Home.css";
-import imageNotFound from "../images/wrong404.png";
 import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Home() {
-  const [order, SetOrder] = useState('');
-  const [tempShow,SetTempShow]= (useState([]))
+  const [order, SetOrder] = useState("");
+  const [tempShow, SetTempShow] = useState([]);
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs); //trae del reducer el estado dogs
   const allTemperaments = useSelector((state) => state.temperaments);
@@ -48,6 +46,7 @@ export default function Home() {
     dispatch(getDogs());
     setCurrentPage(1);
     SetOrder("");
+    SetTempShow('');
   }
   function orderByWeight(e) {
     e.preventDefault(e);
@@ -67,8 +66,12 @@ export default function Home() {
     dispatch(filterCreated(e.target.value));
     setCurrentPage(1);
     SetOrder(e.target.value);
-    if(e.target.value ==='api' || e.target.value=== 'created' || e.target.value=== 'all'){
-      SetTempShow('')
+    if (
+      e.target.value === "api" ||
+      e.target.value === "created" ||
+      e.target.value === "all"
+    ) {
+      SetTempShow("");
     }
   }
   function handleFilterByTemperament(e) {
