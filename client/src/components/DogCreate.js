@@ -231,7 +231,7 @@ function Form() {
   }
 
   function handleSubmit(e) {
-    input.name[0].toUpperCase();
+    
     if (
       input.name &&
       input.height_min &&
@@ -246,6 +246,7 @@ function Form() {
       errors.height_max === null &&
       errors.height_min === null
     ) {
+      input.name[0].toUpperCase();
       e.preventDefault();
       dispatch(postDog(input));
       alert("you have created a dog!");

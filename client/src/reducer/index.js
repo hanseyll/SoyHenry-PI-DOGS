@@ -52,7 +52,7 @@ function rootReducer(state = initialState, action) {
       let sortedArr =
         action.payload === "desc"
           ? state.dogs.sort(function (a, b) {
-              if (a.name > b.name) {
+              if (a.name.toUpperCase() > b.name.toUpperCase()) {
                 return -1;
               }
               if (b.name > a.name) {
@@ -61,7 +61,7 @@ function rootReducer(state = initialState, action) {
               return 0;
             })
           : state.dogs.sort(function (a, b) {
-              if (a.name > b.name) {
+              if (a.name.toUpperCase() > b.name.toUpperCase()) {
                 return 1;
               }
               if (b.name > a.name) {
