@@ -11,7 +11,7 @@ function validate(e) {
     error.name = "Write a name, dont be an asshole";
   else if (!isNaN(e.name)) error.name = "Only text";
   else if (e.name.length > 30)
-    error.name = "you have to wirite a name with maximum 30 letters";
+    error.name = "you have to write a name with maximum 30 letters";
 
   else if (typeof e.name === "string") {
     error.name = null;
@@ -231,6 +231,7 @@ function Form() {
   }
 
   function handleSubmit(e) {
+    input.name[0].toUpperCase();
     if (
       input.name &&
       input.height_min &&
@@ -281,10 +282,10 @@ function Form() {
       <h1>Creating a breed</h1>
       <form autocomplete="off" className="" onSubmit={(e) => handleSubmit(e)}>
         {/*Nombre de la raza del perrito*/}
-        <div className="part-container">
+        <div className="part-container nameDog" >
           <label className="label-text">Dog's name </label>
           <input
-            className="controls"
+            className="controls nameDog"
             type="text"
             value={input.name}
             name="name"

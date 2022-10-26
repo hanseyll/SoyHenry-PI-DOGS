@@ -193,3 +193,7 @@
   border-radius: 15px;
   
 }
+
+.nameDog{
+  text-transform: capitalize;
+}
