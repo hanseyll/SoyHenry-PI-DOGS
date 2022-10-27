@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import {
   getDogs,
   filterDogsByWeight,
@@ -35,12 +35,13 @@ export default function Home() {
   };
   useEffect(() => {
     dispatch(getDogs());
+
     dispatch(getTemperaments());
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 1000);
-  }, []);
+  }, [dispatch]);
 
   function handleClick(e) {
     e.preventDefault();
@@ -119,7 +120,7 @@ export default function Home() {
         <Link to="/dogs/create-dogs">Create Dog</Link>
         <div className="search-container">
           <form action="/action_page.php">
-            <SearchBar />
+            <SearchBar setCurrentPage={setCurrentPage} />
           </form>
         </div>
       </div>
@@ -252,3 +253,19 @@ export default function Home() {
     </div>
   );
 }
+
+// const mapStateToProps = (state)=>{
+//   return{
+//     dogs: state.dogs
+//   }
+// }
+
+// const mapDispatchToProps = (dispatch)=>{
+//   return{
+//     getDogs: ()=>dispatch(getDogs())
+//   }
+// }
+
+// export default connect(mapStateToProps,{getDogs})(Home)
+
+//props.getDogs()

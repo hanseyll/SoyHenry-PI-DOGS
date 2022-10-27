@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
     name:{
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
     height_min:{
       type: DataTypes.INTEGER,

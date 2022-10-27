@@ -124,16 +124,17 @@ export function deleteDog(payload){
 }
 
 export function getDetail(id) {
-  return async function (dispatch) {
-    try {
-      var json = await axios.get("/dogs/" + id);
-      return dispatch({
-        type: "GET_DETAILS",
-        payload: json.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  return function (dispatch) {
+   
+     axios.get("/dogs/" + id).then(response => 
+     dispatch({
+      type: "GET_DETAILS",
+      payload: response.data
+    })
+     ).catch(()=>{
+      alert('dog not found')
+      window.location.replace('https://soyhenry-pi-dogs.vercel.app/dogs')
+     })
+  }
 }
 
