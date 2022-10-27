@@ -11,6 +11,7 @@ export default function Detail(props) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
+  
     dispatch(getDetail(props.match.params.id));
     setLoading(true)
     setTimeout(() => {
@@ -19,12 +20,6 @@ export default function Detail(props) {
   }, [dispatch]);
 
   const myDog = useSelector((state) => state.detail);
-
-  // if(myDog[0].weight_min===null) myDog[0].weight_min= 0
-  // if(myDog[0].weight_max===null) myDog[0].weight_max= 0
-  // if(myDog[0].height_min===null) myDog[0].height_min= 0
-  // if(myDog[0].height_max===null) myDog[0].height_max= 0;
-
   return (
     <div>
       {myDog.length > 0  && !loading? (

@@ -70,6 +70,11 @@ function validate(e) {
   if (e.image.length > 0) {
     let valid = /^(ftp|http|https):\/\/[^ "]+$/.test(e.image);
     if (!valid) error.image = "Write a correct URL";
+    else{
+      error.image =null;
+    }
+  }else if(e.image.length < 0){
+    error.image='write a URL'
   }
 
   if (
@@ -239,12 +244,14 @@ function Form() {
       input.weight_min &&
       input.weight_max &&
       input.life_span &&
+      input.image &&
       input.temperament.length > 0 &&
       errors.name === null &&
       errors.weight_max === null &&
       errors.weight_min === null &&
       errors.height_max === null &&
-      errors.height_min === null
+      errors.height_min === null &&
+      errors.image === null
     ) {
       input.name[0].toUpperCase();
       e.preventDefault();

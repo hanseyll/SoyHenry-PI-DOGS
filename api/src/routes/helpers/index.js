@@ -3,7 +3,7 @@ const {API_KEY} = process.env
 const {Dog,Temperament} = require('../../db')
 const getApiInfo = async () =>{
     
-
+    try {
         const apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
         const apiInfo = await apiUrl.data.map(e => {
             return{
@@ -20,6 +20,11 @@ const getApiInfo = async () =>{
     
         })
         return apiInfo;
+    } catch (error) {
+        res.Status(404).send(error.message)
+    }
+
+     
         
     
         
@@ -27,21 +32,37 @@ const getApiInfo = async () =>{
 }
 
 const getDbInfo = async () =>{
-    return await Dog.findAll({
-        include:{
-            model: Temperament,
-            attributes: ['name'],
-            through: {
-                attributes: [],
+
+    try {
+        return await Dog.findAll({
+            include:{
+                model: Temperament,
+                attributes: ['name'],
+                through: {
+                    attributes: [],
+                }
             }
-        }
-    })
+        })
+    } catch (error) {
+        res.Status(404).send(error.message)
+    }
+
+
+
 }
 
 const getAllDogs = async () => {
+try {
+    
     const apiInfo = await getApiInfo();
     const dbInfo = await getDbInfo();
     const infoTotal = apiInfo.concat(dbInfo)
     return infoTotal;
+
+} catch (error) {
+    res.Status(404).send(error.message)
+}
+
+ 
 }
 module.exports = { getAllDogs,getDbInfo, getApiInfo };

@@ -83,9 +83,9 @@ function rootReducer(state = initialState, action) {
         } else if (dog.temperament) {
           return dog.temperament.includes(action.payload);
         }
-        return console.log("hay un null");
+        return console.log("null");
       });
-      console.log(action.payload);
+     
 
       return {
         ...state,
