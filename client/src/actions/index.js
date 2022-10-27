@@ -109,6 +109,19 @@ export function postDog(payload) {
     }
   };
 }
+export function deleteDog(payload){
+  return async function (dispatch){
+    try {
+      await axios.delete(`/dogs/${payload}`);
+      return dispatch({
+        type: 'DELETE_DOG',
+        payload: payload
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 export function getDetail(id) {
   return async function (dispatch) {

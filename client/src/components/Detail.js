@@ -17,13 +17,17 @@ export default function Detail(props) {
     setTimeout(() => {
       setLoading(false);
     }, 1000);
+    return () => {
+      dispatch({ type: "GET_DETAILS", payload: {} });
+    };
   }, [dispatch]);
 
   const myDog = useSelector((state) => state.detail);
   return (
     <div>
       {myDog.length > 0  && !loading? (
-        <div className="container-detail">
+        <div >
+          <div className="container-detail">
           <div className="item">
             <img
               id="imgDetail"
@@ -64,7 +68,19 @@ export default function Detail(props) {
               </div>
             </div>
           </div>
+          </div>
+          <Link className="linkBack" to="/dogs">
+        <div className="box-1">
+          <div className="btn btn-one">
+            <span>Back to home</span>
+          </div>
         </div>
+      </Link>
+        </div>
+
+
+
+        
       ) : (
         <div className="loader">
           <ClipLoader
@@ -77,13 +93,6 @@ export default function Detail(props) {
         </div>
       )}
 
-      <Link className="linkBack" to="/dogs">
-        <div className="box-1">
-          <div className="btn btn-one">
-            <span>Back to home</span>
-          </div>
-        </div>
-      </Link>
     </div>
   );
 }

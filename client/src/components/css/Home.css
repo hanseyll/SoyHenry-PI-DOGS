@@ -290,3 +290,19 @@ h1{
   margin-top: 20px;
   
 }
+.deleteButton{
+  background-color: #F27070;
+  border-radius: 20px;
+  font-size: 20px;
+  border-style: none;
+  padding: 5px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  cursor: pointer;
+  width: 40%;
+}
+.deleteButton:hover{
+  transform: scale(1.1);
+  transition: 0.5s;
+}

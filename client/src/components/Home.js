@@ -8,6 +8,7 @@ import {
   orderByName,
   getTemperaments,
   filterByTemperament,
+  deleteDog
 } from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
@@ -46,7 +47,7 @@ export default function Home() {
     dispatch(getDogs());
     setCurrentPage(1);
     SetOrder("");
-    SetTempShow('');
+    SetTempShow("");
   }
   function orderByWeight(e) {
     e.preventDefault(e);
@@ -58,6 +59,12 @@ export default function Home() {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
+    SetOrder(e.target.value);
+  }
+  function deleteDogs(e){
+    e.preventDefault(e);
+    dispatch(deleteDog(e.target.value))
+
     SetOrder(e.target.value);
   }
 
@@ -88,10 +95,9 @@ export default function Home() {
       e.target.value !== "created" &&
       e.target.value !== "api"
     ) {
-        if(!tempShow.includes(e.target.value)){
-          SetTempShow(tempShow + " " + e.target.value);
-        }
-
+      if (!tempShow.includes(e.target.value)) {
+        SetTempShow(tempShow + " " + e.target.value);
+      }
     } else {
       SetTempShow("");
     }
@@ -166,10 +172,9 @@ export default function Home() {
       {tempShow ? (
         <div className="container-all-temperaments">
           <div className="container-p-temperaments">
-          <p className="temperamentsShow">{tempShow}</p>
+            <p className="temperamentsShow">{tempShow}</p>
           </div>
         </div>
-        
       ) : (
         "null"
       )}
@@ -206,7 +211,7 @@ export default function Home() {
             data-testid="loader"
           />
         </div>
-      ) : (
+      ) : !loading? (
         <div className="pos-card">
           {console.log(currentDogs)}
           {currentDogs?.map((c) => {
@@ -227,13 +232,15 @@ export default function Home() {
                         : console.log("ready")
                     }
                   />
+                  
                 </Link>
-                {/*  */}
+                {c.temperaments? <button className="deleteButton" value={c.name}  onClick={(e) => deleteDogs(e)}>delete</button>:''}
               </div>
             );
           })}
         </div>
-      )}
+
+      ) : console.log('loading...')}
 
       <div></div>
       <Paginated

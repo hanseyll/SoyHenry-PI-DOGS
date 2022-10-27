@@ -102,6 +102,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         detail: action.payload,
       };
+      case 'DELETE_DOG':
+        return {
+          ...state,
+          dogs: state.dogs.filter((d) => d?.name !== action.payload),
+        };
     default:
       return state;
   }

@@ -35,7 +35,9 @@ export default function Card({
 
         <p>{temperamentsApi}</p>
         <p>{temperamentsDB}</p>
+        
       </div>
+      
     </div>
   );
 }
